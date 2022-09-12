@@ -1,6 +1,5 @@
 # Default ignored files
 /src/part2/arithmetic.cabal
-/src/part2/stack.yaml
 /src/part2/stack.yaml.lock
 /src/part2/.vscode
 /src/part2/.stack-work

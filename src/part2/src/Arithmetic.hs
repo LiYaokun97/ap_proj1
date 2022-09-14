@@ -33,8 +33,10 @@ evalSimple (Add e1 e2) = evalSimple e1 + evalSimple e2
 evalSimple (Sub e1 e2) = evalSimple e1 - evalSimple e2
 evalSimple (Mul e1 e2) = evalSimple e1 * evalSimple e2
 evalSimple (Div e1 e2) = evalSimple e1 `div` evalSimple e2
-evalSimple (Pow e1 e2) = if evalSimple e2 == 0 then evalSimple e1 * 0 + 1
-  else  evalSimple e1 ^ evalSimple e2
+evalSimple (Pow e1 e2) 
+  | evalSimple e2 == 0 = evalSimple e1 * 0 + 1
+  | evalSimple e2 > 0  = evalSimple e1 ^ evalSimple e2
+  | otherwise          = error "The exponent should be a nonnegative integer."
 evalSimple _ = error "evalSimple can not handle complex expressions!"
 
 extendEnv :: VName -> Integer -> Env -> Env

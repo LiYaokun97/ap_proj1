@@ -42,10 +42,10 @@ tests = [
   ("evalErr-test21", evalErr (If {test = Sub (Var "x") (Var "y"), yes = Pow (Cst 2) (Var "z"), no = Mul (Cst 20)(Cst 4)}) (extendEnv "z" (-1) (extendEnv "y" 0 (extendEnv "x" 1 initEnv))) == Left ENegPower),
   ("evalErr-test22", evalErr (Sum "x" (Cst 1) (Add (Cst 2) (Cst 2)) (Mul (Var "x") (Var "x"))) (extendEnv "y" 0 initEnv)  == Right 30),
   ("evalErr-test23", evalErr (Sum "m" (If {test = Sub (Var "x") (Var "y"), yes = Pow (Cst 2) (Cst 0), no = Mul (Cst 20)(Cst 4)}) (Add (Cst 2) (Cst 2)) (Mul (Var "m") (Var "m"))) (extendEnv "y" 0 (extendEnv "x" 1 initEnv)) == Right 30),
-  ("evalErr-test24", evalErr (Sum "m" (If {test = Sub (Var "x") (Var "y"), yes = Pow (Cst 2) (Cst 0), no = Mul (Cst 20)(Cst 4)}) (Sub (Cst 2) (Cst 2)) (Mul (Var "m") (Var "m"))) (extendEnv "y" 0 (extendEnv "x" 1 initEnv)) == Left (EOther "In Sum, to value is larger than from value")),
+  ("evalErr-test24", evalErr (Sum "m" (If {test = Sub (Var "x") (Var "y"), yes = Pow (Cst 2) (Cst 0), no = Mul (Cst 20)(Cst 4)}) (Sub (Cst 2) (Cst 2)) (Mul (Var "m") (Var "m"))) (extendEnv "y" 0 (extendEnv "x" 1 initEnv)) == Right 0),
   ("evalErr-test25", evalErr (Let "x" (Div (Cst 4) (Cst 0)) (Cst 5)) initEnv == Left EDivZero),
   ("evalErr-test26", evalErr (If {test = If {test = Var "x", yes = Var "y", no = Var "z"}, yes = Sum {var = "a", from = (Cst 3), to = (Add (Var "x")(Var "z")), body = (Var "a")}, no = (Cst 1)})
-  (extendEnv "z" (-1) (extendEnv "y" 2 (extendEnv "x" 1 initEnv))) == Left (EOther "In Sum, to value is larger than from value") ),
+  (extendEnv "z" (-1) (extendEnv "y" 2 (extendEnv "x" 1 initEnv))) == Right 0 ),
   ("evalErr-test27", evalErr (Pow (Div (Cst 20)(Cst 0)) (Cst 1)) initEnv == Left EDivZero),
   ("evalErr-test28", evalErr (Pow (Var "x") (Cst 1)) initEnv == Left (EBadVar "x")),
   

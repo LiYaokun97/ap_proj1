@@ -3,6 +3,6 @@
 /src/part2/stack.yaml.lock
 /src/part2/.vscode
 /src/part2/.stack-work
-/.idea/
-/.stack-work/
-/stack.yaml.lock/
+/.idea
+/.stack-work
+/stack.yaml.lock

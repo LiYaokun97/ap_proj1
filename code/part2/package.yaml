@@ -8,7 +8,7 @@ dependencies:
 
 # The Arithmetic library
 library:
-  source-dirs: code/part2/src
+  source-dirs: src
   ghc-options:
     - -W
   exposed-modules:
@@ -24,7 +24,7 @@ library:
 tests:
   my-test-suite:
     main: Test.hs
-    source-dirs: code/part2/tests
+    source-dirs: tests
     dependencies:
       - arithmetic
       - tasty     # The Test.Tasty framework, if you want to use it
